@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   page: 0,
+  total: 0,
   pokemons: [],
   loading: false,
   error: null
@@ -15,7 +16,10 @@ const pokemonSlice = createSlice({
       state.loading = true;
     },
     setPokemons: (state, action) => {
-      console.log({action});
+      state.pokemons = action.payload.pokemons;
+      state.page = action.payload.page;
+      state.total = action.payload.total;
+      state.loading = false;
     }
   }
 });
