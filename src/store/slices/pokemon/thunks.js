@@ -4,17 +4,11 @@ import * as pokemonApi from "../../../api/pokemonApi"
 
 export const getPokemons = (page = 0) => {
   return async ( dispatch, getState ) => {
-
-    console.log(page);
     dispatch(starLoadingPokemon());
-
     // TODO: fetch pokemons
     // const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${page * 20}&limit=20`);
     // const data = await response.json();
-
     const {data} = await pokemonApi.getPokemons(page);
-    console.log(data);
-
     dispatch(setPokemons({
       pokemons: data.results,
       page: page + 1,
